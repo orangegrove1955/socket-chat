@@ -1,0 +1,30 @@
+{
+  "name": "socket-chat",
+  "version": "1.0.0",
+  "description": "Real-time chat application using Node.js and socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orangegrove1955/socket-chat.git"
+  },
+  "keywords": [
+    "socket.io",
+    "chat",
+    "real-time"
+  ],
+  "author": "Matthew Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orangegrove1955/socket-chat/issues"
+  },
+  "homepage": "https://github.com/orangegrove1955/socket-chat#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
