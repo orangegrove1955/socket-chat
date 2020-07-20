@@ -7,7 +7,52 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: lightblue;
+  background: #fff;
+}
+
+#message-form {
+  position: absolute;
+  bottom: 8rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #b4b6b9;
+  border-radius: 24px;
+}
+
+#message-form:hover {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+#message-form:focus-within {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+#message-input {
+  width: 80%;
+  border: none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  outline: none;
+}
+
+#send-button {
+  background-color: rgba(0, 0, 255, 0.288);
+  outline: none;
+  border: none;
+  border-radius: 24px;
+  width: 20%;
+  font-size: 1.2rem;
+}
+
+#send-button:hover {
+  background: blue;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .social {
