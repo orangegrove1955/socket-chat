@@ -1,13 +1,14 @@
 # Socket chat
 
-A real-time chat application built using socket.io and Node.js deployed to Netlify Serverless functions
+A real-time chat application built using socket.io and Node.js deployed to Heroku
 
 # What I learned
 
 - socket.io
-- Netlify Serverless functions
+- Express server
+- Heroku deployments
 - Real-time chat
 
 # Demo
 
-Check out the [Netlify demo](https://netlify.app/)
+Check out the [Heroku demo](http://socket-chat-plain.herokuapp.com/)
