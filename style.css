@@ -3,21 +3,60 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-family: sans-serif;
 }
 
 body {
   width: 100vw;
   height: 100vh;
   background: #fff;
+  display: grid;
+  grid-template-rows: 1fr max-content max-content;
+  gap: 1rem;
+  justify-content: center;
+  overflow: auto;
+  padding: 1rem;
+}
+
+#message-container {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.self,
+.server-message {
+  padding: 0.75rem;
+  border-radius: 24px;
+}
+
+.self {
+  background: blue;
+  color: white;
+  align-self: flex-end;
+}
+
+.server {
+  align-self: flex-start;
+}
+
+.server-message {
+  background: lightgray;
+}
+.name {
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+  color: darkgray;
 }
 
 #message-form {
-  position: absolute;
-  bottom: 8rem;
-  left: 50%;
-  transform: translate(-50%);
-  width: 60vw;
+  width: 80vw;
   min-width: 300px;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
   border: 1px solid #b4b6b9;
@@ -56,10 +95,9 @@ body {
 }
 
 .social {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translate(-50%);
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
   font-size: 2rem;
 }
 
