@@ -1,7 +1,13 @@
-// Start server on port 3000
-const io = require("socket.io")(3000);
+const express = require("express");
+const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
+const port = process.env.PORT || 3000;
 
 const users = {};
+
+app.use(express.static(__dirname));
 
 io.on("connection", (socket) => {
   /** New user has joined the chat */
@@ -23,4 +29,8 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("user-disconnected", users[socket.id]);
     delete users[socket.id];
   });
+});
+
+http.listen(port, () => {
+  console.log(`Listening on ${port}`);
 });
