@@ -3,9 +3,25 @@ const messageContainer = document.getElementById("message-container");
 const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 
+window.onload = () => {
+  const name = prompt("What is your name?");
+  appendMessage("You have joined the chat");
+  socket.emit("new-user", name);
+};
+
 // Display messages when incoming
 socket.on("chat-message", (data) => {
-  appendMessage(data);
+  appendMessage(`${data.name}: ${data.message}`);
+});
+
+/* Display when new users join the chat */
+socket.on("user-connected", (name) => {
+  appendMessage(`${name} has joined the chat`);
+});
+
+/* Display when a user leaves the chat */
+socket.on("user-disconnected", (name) => {
+  appendMessage(`${name} has left the chat`);
 });
 
 // Add event listener to send message when message form is submitted
@@ -18,6 +34,7 @@ messageForm.addEventListener("submit", (e) => {
 const sendMessage = () => {
   const message = messageInput.value;
   socket.emit("send-message", message);
+  appendMessage(`You: ${message}`);
   messageInput.value = "";
 };
 
