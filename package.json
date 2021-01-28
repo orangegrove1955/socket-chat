@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/orangegrove1955/socket-chat#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
   },

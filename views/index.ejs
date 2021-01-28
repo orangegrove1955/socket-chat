@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Chat - Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="room-list">
+        <% Object.keys(rooms).forEach(room=> {%>
+            <div>
+                <%= room %>
+            </div>
+            <a href="/<%= room %>">Join</a>
+            <% }) %>
+    </div>
+    <form action="/createRoom" method="POST" id="room-form">
+        <input type="text" id="room-input" name="roomName" required>
+        <button type="submit" id="room-button">Create New Room</button>
+    </form>
+
+    <div class="social">
+        <a href="https://github.com/orangegrove1955/socket-chat">
+            <i class="fas fa-code"></i>
+        </a>
+        <a href="https://github.com/orangegrove1955">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/matthew-t-williams/">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+</body>
+<!-- Import socket.io scripts from server before use -->
+<script defer src="http://socket-chat-plain.herokuapp.com/socket.io/socket.io.js"></script>
+<!-- <script defer src="index.js"></script> -->
+
+</html>
