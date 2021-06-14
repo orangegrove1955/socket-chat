@@ -1,3 +1,10 @@
+:root {
+  --primary: #ee6055;
+  --primary-light: #eb8780;
+  --secondary: #ffd046;
+  --background: #aafac8;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +16,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #fff;
+  background: var(--background);
   display: grid;
   grid-template-rows: 1fr max-content max-content;
   gap: 1rem;
@@ -35,7 +42,7 @@ body {
 }
 
 .self {
-  background: blue;
+  background: var(--primary);
   color: white;
   align-self: flex-end;
 }
@@ -45,7 +52,7 @@ body {
 }
 
 .server-message {
-  background: lightgray;
+  background: var(--secondary);
 }
 .name {
   font-size: 0.75rem;
@@ -53,22 +60,57 @@ body {
   color: darkgray;
 }
 
-#message-form {
+#room-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roomWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem;
+  font-size: 1.5rem;
+  width: 50%;
+}
+
+.roomLink {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.roomLink:hover {
+  background-color: #555;
+}
+
+.roomLink:active {
+  background-color: black;
+}
+
+#message-form,
+#room-form {
   width: 80vw;
   min-width: 300px;
   max-width: 500px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid #b4b6b9;
+  border: 2px solid var(--primary);
   border-radius: 24px;
 }
 
 #message-form:hover,
-#message-form:focus-within {
+#room-form:hover,
+#message-form:focus-within,
+#room-form:focus-within {
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
 
-#message-input {
+#message-input,
+#room-input {
   width: 80%;
   border: none;
   background-color: transparent;
@@ -77,21 +119,25 @@ body {
   padding-left: 1rem;
 }
 
-#send-button {
-  background-color: transparent;
+#send-button,
+#room-button {
+  background-color: var(--primary-light);
   border: none;
-  border-left: 1px solid #b4b6b9;
+  color: white;
   border-radius: 24px;
   width: 20%;
   max-width: 100px;
   font-size: 1.2rem;
 }
 
-#send-button:hover {
-  background: blue;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
+#room-button {
+  max-width: none;
+  width: 50%;
+}
+
+#send-button:hover,
+#room-button:hover {
+  background: var(--primary);
 }
 
 .social {

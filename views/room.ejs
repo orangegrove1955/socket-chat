@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket Chat</title>
+    <script>
+        const roomName = "<%= roomName%>"
+    </script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -30,6 +33,6 @@
 </body>
 <!-- Import socket.io scripts from server before use -->
 <script defer src="http://socket-chat-plain.herokuapp.com/socket.io/socket.io.js"></script>
-<script defer src="index.js"></script>
+<script defer src="room.js"></script>
 
 </html>

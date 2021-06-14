@@ -10,8 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 3000;
 
-const users = {};
-const rooms = { Name: {} };
+// Object of empty rooms
+const rooms = {};
 
 // Render the homepage
 app.get("/", (req, res) => {
@@ -30,6 +30,7 @@ app.post("/createRoom", (req, res) => {
     res.redirect(req.body.roomName);
 
     // Send message that new room was created
+    io.emit("room-created", req.body.roomName);
     return;
   }
   return res.send({ status: 400, message: "Failed to create room" });
@@ -37,7 +38,7 @@ app.post("/createRoom", (req, res) => {
 
 // Render a room passed by URL param
 app.get("/:room", (req, res) => {
-  if (Object.keys(rooms).includes(req.params.room)) {
+  if (rooms[req.params.room]) {
     return res.render("room", { roomName: req.params.room });
   }
   return res.redirect("/");
@@ -45,25 +46,35 @@ app.get("/:room", (req, res) => {
 
 io.on("connection", (socket) => {
   /** New user has joined the chat */
-  socket.on("new-user", (name) => {
-    users[socket.id] = name;
-    socket.broadcast.emit("user-connected", name);
+  socket.on("new-user", (roomName, name) => {
+    socket.join(roomName);
+    rooms[roomName].users[socket.id] = name;
+    socket.to(roomName).broadcast.emit("user-connected", name);
   });
 
   /** Message has been received from a user */
-  socket.on("send-message", (message) => {
-    socket.broadcast.emit("chat-message", {
+  socket.on("send-message", (roomName, message) => {
+    socket.to(roomName).broadcast.emit("chat-message", {
       message: message,
-      name: users[socket.id],
+      name: rooms[roomName].users[socket.id],
     });
   });
 
   /** User has left the chat */
   socket.on("disconnect", () => {
-    socket.broadcast.emit("user-disconnected", users[socket.id]);
-    delete users[socket.id];
+    getUserRooms(socket).forEach(roomName => {
+      socket.to(roomName).broadcast.emit("user-disconnected", rooms[roomName].users[socket.id]);
+      delete rooms[roomName].users[socket.id];
+    });
   });
 });
+
+function getUserRooms(socket) {
+  return Object.entries(rooms).reduce((names, [name, room]) => {
+    if (room.users[socket.id] !== null) names.push(name);
+    return names;
+  }, [])
+}
 
 http.listen(port, () => {
   console.log(`Listening on ${port}`);
