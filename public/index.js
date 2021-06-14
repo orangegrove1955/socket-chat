@@ -1,4 +1,4 @@
-const socket = io("http://socket-chat-plain.herokuapp.com/");
+const socket = io("https://socket-chat-plain.herokuapp.com/");
 const roomList = document.getElementById("room-list");
 
 // Display new name when room is created
