@@ -11,4 +11,4 @@ A real-time chat application built using socket.io and Node.js deployed to Herok
 
 # Demo
 
-Check out the [Heroku demo](http://socket-chat-plain.herokuapp.com/)
+Check out the [Heroku demo](https://socket-chat-plain.herokuapp.com/)
